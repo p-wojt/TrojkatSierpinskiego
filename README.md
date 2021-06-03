@@ -1,1 +1,3 @@
-# TrojkatSierpinskiego
+# Trójkąt Sierpińskiego
+
+##Algorytm tworzący fraktral

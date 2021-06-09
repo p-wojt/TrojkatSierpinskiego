@@ -39,11 +39,9 @@ class SubWindow(QWidget):
         self.paintTriangle(e, qp)
         qp.end()
 
-
     def start_gamepoint(self, p1, p2, p3):
         r1, r2 = sorted([rd.uniform(0.0, 1.0), rd.uniform(0.0, 1.0)])
         return QPointF(r1 * p1.x() + (r2 - r1)*p2.x() + (1-r2)*p3.x(), r1 * p1.y() + (r2 - r1)*p2.y() + (1-r2)*p3.y())
-
 
     def paintTriangle(self, e, qp):
         global OFFSET
@@ -98,8 +96,6 @@ class SubWindow(QWidget):
                 triangles.append(t)
 
 
-
-
 class CreateButton(QPushButton):
     def __init__(self, fields=None):
         super(CreateButton, self).__init__()
@@ -114,7 +110,6 @@ class CreateButton(QPushButton):
                 HEIGHT = int(self.fields[0].text())
                 WIDTH = int(self.fields[1].text())
                 STEPS = int(self.fields[2].text())
-                print(HEIGHT, WIDTH, STEPS)
                 POLYGON_WINDOW = SubWindow()
 
 
@@ -124,33 +119,27 @@ class MainWindow(QWidget):
         self.setup()
 
     def setup(self):
-        self.setWindowTitle('Trójkąt Sierpińskiego')
-
+        self.setWindowTitle('Trójkąt Sierpińskiego by Patryk Wojtiuk')
         grid = QGridLayout()
         label1 = QLabel()
+        label1.setText('Wyskokość: ')
         label2 = QLabel()
-        label3 = QLabel()
+        label2.setText('Szerokość: ')
         heightEdit = QLineEdit()
         widthEdit = QLineEdit()
-        complexityEdit = QLineEdit()
-
-        label1.setText('Wyskokość: ')
-        label2.setText('Szerokość: ')
-        label3.setText('Podaj stopień szczegółowości: ')
-
         grid.addWidget(label1, 0, 0)
         grid.addWidget(label2, 1, 0)
         grid.addWidget(heightEdit, 0, 1)
         grid.addWidget(widthEdit, 1, 1)
+        label3 = QLabel()
+        label3.setText('Podaj stopień szczegółowości: ')
+        complexityEdit = QLineEdit()
         grid.addWidget(label3, 2, 0)
         grid.addWidget(complexityEdit, 2, 1)
-
         createButton = CreateButton([heightEdit, widthEdit, complexityEdit])
-        createButton.setText('Stwórz Trójkąt Sierpińskiego')
-
+        createButton.setText('Stworz Trójkąt Sierpińskiego')
         grid.addWidget(createButton, 3, 0, 1, 2)
         createButton.clicked.connect(createButton.akcja)
-
         self.setLayout(grid)
         self.show()
 
